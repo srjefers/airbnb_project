@@ -1,5 +1,0 @@
-changeLogFile:changelog.xml
-driver:org.postgresql.Driver
-url:jdbc:postgresql://localhost:5432/leantech_prjct_airbnb_db
-username:postgres
-password:root

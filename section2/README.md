@@ -15,3 +15,7 @@ liquibase init project --project-dir=/Users/jefersonargueta/Documents/projects/L
 
 
 liquibase status --username=postgres --password=root --changelog-file=./changelog.xml
+
+liquibase update --changelog-file=./changelog.xml  
+
+liquibase generate-changelog --changelog-file=./changelog.xml --url=jdbc:postgresql://localhost:5432/leantech_prjct_airbnb_db --username=root --password=root --schemas=sch_airbnb

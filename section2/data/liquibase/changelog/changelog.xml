@@ -1,0 +1,84 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="liquibase (generated)" id="1733899254312-1">
+        <createTable remarks="Table Reviews, created at sch_airbnb schema at postgres database." tableName="dim_review">
+            <column autoIncrement="true" name="review_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dim_review"/>
+            </column>
+            <column name="number_of_reviews" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_review" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reviews_per_month" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733899254312-2">
+        <createTable remarks="Table Neighborhoods, created at sch_airbnb schema at postgres database." tableName="dim_neighborhood">
+            <column autoIncrement="true" name="neighborhood_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dim_neighborhood"/>
+            </column>
+            <column name="neighbourhood_group" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="neighbourhood_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733899254312-3">
+        <createTable remarks="Table Room_type, created at sch_airbnb schema at postgres database." tableName="dim_room_type">
+            <column autoIncrement="true" name="room_type_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="dim_room_type_pkey"/>
+            </column>
+            <column name="room_type_name" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733899254312-4">
+        <createTable remarks="Table Host, created at sch_airbnb schema at postgres database." tableName="dim_host">
+            <column name="host_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dim_host"/>
+            </column>
+            <column name="host_name" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="host_calculated_listings_count" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733899254312-5">
+        <createTable tableName="fct_home">
+            <column name="home_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_fct_home"/>
+            </column>
+            <column name="home_name" type="VARCHAR(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="home_latitude" type="numeric(10, 8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="home_longitude" type="numeric(10, 8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="home_price" type="numeric(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="home_minimum_nights" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="home_availability_365" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fk_neighborhood_id" type="BIGINT"/>
+            <column name="fk_host_id" type="BIGINT"/>
+            <column name="fk_review_id" type="BIGINT"/>
+            <column name="fk_room_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
