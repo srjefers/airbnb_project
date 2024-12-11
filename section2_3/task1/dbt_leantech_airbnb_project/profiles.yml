@@ -1,0 +1,30 @@
+dbt_leantech_airbnb_project:
+  outputs:
+    dev:
+      dbname: leantech_prjct_airbnb_db
+      host: localhost
+      pass: root
+      port: 5432
+      schema: sch_bronze_airbnb
+      threads: 1
+      type: postgres
+      user: root
+    silver:
+      dbname: leantech_prjct_airbnb_db
+      host: localhost
+      pass: root
+      port: 5432
+      schema: sch_silver_airbnb
+      threads: 1
+      type: postgres
+      user: root
+    gold:
+      dbname: leantech_prjct_airbnb_db
+      host: localhost
+      pass: root
+      port: 5432
+      schema: sch_gold_airbnb
+      threads: 1
+      type: postgres
+      user: root
+  target: dev

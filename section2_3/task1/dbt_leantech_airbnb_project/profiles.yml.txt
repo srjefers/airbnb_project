@@ -1,0 +1,12 @@
+dbt_leantech_airbnb_project:
+  outputs:
+    dev:
+      dbname: "{{ env_var('PG_DATABASE_NM') }}"
+      host: "{{ env_var('PG_HOST') }}"
+      user: "{{ env_var('PG_USER') }}"
+      pass: "{{ env_var('PG_PASSWORD') }}"
+      port: "{{ env_var('PG_PORT') }}"
+      schema: "{{ env_var('PG_SCHEMA') }}"
+      threads: 1
+      type: postgres
+  target: dev
