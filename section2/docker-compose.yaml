@@ -32,14 +32,18 @@ services:
       pg_database:
         condition: service_healthy
     volumes:
-      - "./data/liquibase/changeLog/:/liquibase/changelog/"
-    environment:
-      - DB_HOST=pg_database
-      - DB_PORT=5432
-      - DB_NAME=leantech_prjct_airbnb_db
-      - DB_USER=root
-      - DB_PASSWORD=root
-    command: --url=jdbc:postgresql://pg_database:5432/leantech_prjct_airbnb_db --username=root --password=root --changeLogFile=/liquibase/changelog/changelog.xml update
+      - "./data/liquibase/changelog:/liquibase/changelog:rw"
+    command: --url=jdbc:postgresql://pg_database:5432/leantech_prjct_airbnb_db --username=root --password=root --changelog-file=/liquibase/changelog/changelog.xml generate-changelog
+    networks:
+      - data_default
+  liquibase_update:
+    image: liquibase/liquibase:latest
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+    volumes:
+      - "./data/liquibase/changelog:/liquibase/changelog:rw"
+    command: --url="jdbc:postgresql://pg_database:5432/leantech_prjct_airbnb_db" --username=root --password=root --changeLogFile=/liquibase/changelog/changelog.xml update
     networks:
       - data_default
 
