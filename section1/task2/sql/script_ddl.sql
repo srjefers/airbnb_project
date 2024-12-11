@@ -2,6 +2,8 @@
 -- Please log an issue at https://github.com/pgadmin-org/pgadmin4/issues/new/choose if you find any bugs, including reproduction steps.
 BEGIN;
 
+CREATE SCHEMA IF NOT EXISTS sch_airbnb;
+
 
 ALTER TABLE IF EXISTS sch_airbnb.fct_home DROP CONSTRAINT IF EXISTS fk_dim_neighborhood;
 
@@ -68,7 +70,7 @@ CREATE TABLE IF NOT EXISTS sch_airbnb.fct_home
     fk_host_id bigint,
     fk_review_id bigint,
     fk_room_type_id bigint,
-    CONSTRAINT pk_fct_home PRIMARY KEY (id)
+    CONSTRAINT pk_fct_home PRIMARY KEY (home_id)
 );
 
 COMMENT ON TABLE sch_airbnb.fct_home

@@ -1,6 +1,19 @@
 *.csv
 Diagram
+leantech_prjct_airbnb_db/
 .DS_Store
+.user.yml
+######################
+target/
+dbt_modules/
+dbt_packages/
+logs/
+venv/
+env/
+test.env
+__pycache__
+dbt.log
+logs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

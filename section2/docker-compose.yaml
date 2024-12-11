@@ -1,0 +1,50 @@
+services:
+  pg_database:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=leantech_prjct_airbnb_db
+    volumes:
+      - "./data/leantech_prjct_airbnb_db:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d leantech_prjct_airbnb_db"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+    restart: always
+    networks:
+      - data_default
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "8080:80"
+    networks:
+      - data_default
+  liquibase:
+    image: liquibase/liquibase:latest
+    depends_on:
+      pg_database:
+        condition: service_healthy
+    volumes:
+      - "./data/liquibase/changeLog/:/liquibase/changelog/"
+    environment:
+      - DB_HOST=pg_database
+      - DB_PORT=5432
+      - DB_NAME=leantech_prjct_airbnb_db
+      - DB_USER=root
+      - DB_PASSWORD=root
+    command: --url=jdbc:postgresql://pg_database:5432/leantech_prjct_airbnb_db --username=root --password=root --changeLogFile=/liquibase/changelog/changelog.xml update
+    networks:
+      - data_default
+
+networks:
+  data_default:
+      external: true
+      name: pg-network
+    
