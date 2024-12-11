@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="liquibase (generated)" id="1733899254312-1">
-        <createTable remarks="Table Reviews, created at sch_airbnb schema at postgres database." tableName="dim_review">
+    <changeSet author="liquibase (generated)" id="1733925789386-1">
+        <createTable remarks="Table Reviews, created at sch_dim_airbnb schema at postgres database." tableName="dim_review">
             <column autoIncrement="true" name="review_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dim_review"/>
             </column>
@@ -16,8 +16,8 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="liquibase (generated)" id="1733899254312-2">
-        <createTable remarks="Table Neighborhoods, created at sch_airbnb schema at postgres database." tableName="dim_neighborhood">
+    <changeSet author="liquibase (generated)" id="1733925789386-2">
+        <createTable remarks="Table Neighborhoods, created at sch_dim_airbnb schema at postgres database." tableName="dim_neighborhood">
             <column autoIncrement="true" name="neighborhood_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dim_neighborhood"/>
             </column>
@@ -29,18 +29,18 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="liquibase (generated)" id="1733899254312-3">
-        <createTable remarks="Table Room_type, created at sch_airbnb schema at postgres database." tableName="dim_room_type">
+    <changeSet author="liquibase (generated)" id="1733925789386-3">
+        <createTable remarks="Table Room_type, created at sch_dim_airbnb schema at postgres database." tableName="dim_room_type">
             <column autoIncrement="true" name="room_type_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="dim_room_type_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_room_type_id"/>
             </column>
             <column name="room_type_name" type="VARCHAR(128)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="liquibase (generated)" id="1733899254312-4">
-        <createTable remarks="Table Host, created at sch_airbnb schema at postgres database." tableName="dim_host">
+    <changeSet author="liquibase (generated)" id="1733925789386-4">
+        <createTable remarks="Table Host, created at sch_dim_airbnb schema at postgres database." tableName="dim_host">
             <column name="host_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dim_host"/>
             </column>
@@ -52,8 +52,8 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="liquibase (generated)" id="1733899254312-5">
-        <createTable tableName="fct_home">
+    <changeSet author="liquibase (generated)" id="1733925789386-5">
+        <createTable remarks="Table home, created at sch_fct_airbnb schema at postgres database." tableName="fct_home">
             <column name="home_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_fct_home"/>
             </column>
@@ -80,5 +80,17 @@
             <column name="fk_review_id" type="BIGINT"/>
             <column name="fk_room_type_id" type="BIGINT"/>
         </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733925789386-6">
+        <addForeignKeyConstraint baseColumnNames="fk_host_id" baseTableName="fct_home" constraintName="fk_dim_host" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="host_id" referencedTableName="dim_host" referencedTableSchemaName="sch_dim_airbnb" validate="true"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733925789386-7">
+        <addForeignKeyConstraint baseColumnNames="fk_neighborhood_id" baseTableName="fct_home" constraintName="fk_dim_neighborhood" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="neighborhood_id" referencedTableName="dim_neighborhood" referencedTableSchemaName="sch_dim_airbnb" validate="true"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733925789386-8">
+        <addForeignKeyConstraint baseColumnNames="fk_review_id" baseTableName="fct_home" constraintName="fk_dim_review" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="review_id" referencedTableName="dim_review" referencedTableSchemaName="sch_dim_airbnb" validate="true"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1733925789386-9">
+        <addForeignKeyConstraint baseColumnNames="fk_room_type_id" baseTableName="fct_home" constraintName="fk_dim_room_type" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="room_type_id" referencedTableName="dim_room_type" referencedTableSchemaName="sch_dim_airbnb" validate="true"/>
     </changeSet>
 </databaseChangeLog>
