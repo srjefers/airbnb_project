@@ -1,30 +1,30 @@
 dbt_leantech_airbnb_project:
   outputs:
     dev:
-      dbname: leantech_prjct_airbnb_db
-      host: localhost
-      pass: root
+      dbname: "{{ env_var('PG_DATABASE_NM') }}"
+      host: "{{ env_var('PG_HOST') }}"
+      user: "{{ env_var('PG_USER') }}"
+      pass: "{{ env_var('PG_PASSWORD') }}"
       port: 5432
       schema: sch_bronze_airbnb
       threads: 1
       type: postgres
-      user: root
     silver:
-      dbname: leantech_prjct_airbnb_db
-      host: localhost
-      pass: root
+      dbname: "{{ env_var('PG_DATABASE_NM') }}"
+      host: "{{ env_var('PG_HOST') }}"
+      user: "{{ env_var('PG_USER') }}"
+      pass: "{{ env_var('PG_PASSWORD') }}"
       port: 5432
       schema: sch_silver_airbnb
       threads: 1
       type: postgres
-      user: root
     gold:
-      dbname: leantech_prjct_airbnb_db
-      host: localhost
-      pass: root
+      dbname: "{{ env_var('PG_DATABASE_NM') }}"
+      host: "{{ env_var('PG_HOST') }}"
+      user: "{{ env_var('PG_USER') }}"
+      pass: "{{ env_var('PG_PASSWORD') }}"
       port: 5432
       schema: sch_gold_airbnb
       threads: 1
       type: postgres
-      user: root
   target: dev

@@ -33,9 +33,28 @@ services:
         condition: service_healthy
     volumes:
       - "./data/liquibase/changelog:/liquibase/changelog:rw"
-    command: liquibase generate-changelog --url=jdbc:postgresql://pg_database:5432/leantech_prjct_airbnb_db --username=root --password=root --schemas=sch_fct_airbnb,sch_dim_airbnb --changelog-file=/liquibase/changelog/changelog.xml
+    command: liquibase generate-changelog --url=jdbc:postgresql://pg_database:5432/leantech_prjct_airbnb_db --username=root --password=root --schemas=sch_bronze_airbnb,sch_silver_airbnb,sch_gold_airbnb --changelog-file=/liquibase/changelog/changelog.xml
     networks:
       - data_default
+  dbt_execution:
+    build:
+      dockerfile: Dockerfile
+      context: ./task1/dbt_leantech_airbnb_project
+    image: dbt-leantech:v001
+    environment:
+      - PG_DATABASE_NM=leantech_prjct_airbnb_db
+      - PG_HOST=pg_database
+      - PG_USER=root
+      - PG_PASSWORD=root
+      - PG_PORT=5432
+      - PG_SCHEMA_BRONZE=sch_bronze_airbnb
+      - PG_SCHEMA_SILVER=sch_silver_airbnb
+      - PG_SCHEMA_GOLD=sch_gold_airbnb
+    networks:
+      - data_default
+    depends_on:
+      pg_database:
+        condition: service_healthy
 
 networks:
   data_default:
