@@ -17,3 +17,7 @@ https://docs.liquibase.com/start/tutorials/postgresql/postgresql.html#xml_exampl
 
 
 https://docs.liquibase.com/workflows/liquibase-community/diffing-multiple-schemas-in-liquibase.html
+
+## Referenes
+* https://github.com/dbt-labs/dbt-core/pkgs/container/dbt-postgres
+* https://docs.getdbt.com/docs/core/pip-install

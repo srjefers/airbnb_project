@@ -6,7 +6,7 @@ dbt_leantech_airbnb_project:
       user: "{{ env_var('PG_USER') }}"
       pass: "{{ env_var('PG_PASSWORD') }}"
       port: 5432
-      schema: sch_bronze_airbnb
+      schema: "{{ env_var('PG_SCHEMA_BRONZE') }}"
       threads: 1
       type: postgres
     silver:
@@ -15,7 +15,7 @@ dbt_leantech_airbnb_project:
       user: "{{ env_var('PG_USER') }}"
       pass: "{{ env_var('PG_PASSWORD') }}"
       port: 5432
-      schema: sch_silver_airbnb
+      schema: "{{ env_var('PG_SCHEMA_SILVER') }}"
       threads: 1
       type: postgres
     gold:
@@ -24,7 +24,7 @@ dbt_leantech_airbnb_project:
       user: "{{ env_var('PG_USER') }}"
       pass: "{{ env_var('PG_PASSWORD') }}"
       port: 5432
-      schema: sch_gold_airbnb
+      schema: "{{ env_var('PG_SCHEMA_GOLD') }}"
       threads: 1
       type: postgres
   target: dev
