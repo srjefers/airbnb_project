@@ -11,13 +11,18 @@
         http://www.liquibase.org/xml/ns/pro
         http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
-    <changeSet  id="002"  author="jefersonargueta">
+    <changeSet  id="008"  author="jefersonargueta">
         <sql>
             alter table sch_bronze_airbnb.dim_host add column last_review_date date;
         </sql>
+        <rollback>
+            <sql>
+                alter table sch_bronze_airbnb.dim_host drop column last_review_date;
+            </sql>
+        </rollback>
     </changeSet>  
 
-    <changeSet  id="003"  author="jefersonargueta">
+    <changeSet  id="009"  author="jefersonargueta">
         <sql>
             create table if not exists sch_bronze_airbnb.dim_amenities (
                 amenity_id bigint NOT NULL,
@@ -32,6 +37,9 @@
                 ON DELETE CASCADE
                 NOT VALID;
         </sql>
+        <rollback>
+            <dropTable schemaName="sch_bronze_airbnb" tableName="dim_amenities"/>
+        </rollback>
     </changeSet>
 
 </databaseChangeLog>

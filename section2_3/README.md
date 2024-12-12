@@ -1,3 +1,12 @@
+```bash
+docker-compose up -d
+docker-compose -f docker-compose.liquibase.tag.yml up
+docker-compose -f docker-compose.liquibase.update.yml up
+docker-compose -f docker-compose.liquibase.rollback.yml up
+
+```
+
+
 https://docs.liquibase.com/workflows/liquibase-community/using-liquibase-and-docker.html
 https://docs.liquibase.com/start/tutorials/postgresql/postgresql.html
 
@@ -21,3 +30,7 @@ https://docs.liquibase.com/workflows/liquibase-community/diffing-multiple-schema
 ## Referenes
 * https://github.com/dbt-labs/dbt-core/pkgs/container/dbt-postgres
 * https://docs.getdbt.com/docs/core/pip-install
+
+https://docs.liquibase.com/change-types/enddelimiter-sql.html#xml_example
+https://docs.liquibase.com/commands/update/update.html
+https://docs.liquibase.com/commands/utility/tag.html
