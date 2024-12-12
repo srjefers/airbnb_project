@@ -1,0 +1,14 @@
+services:
+  liquibase:
+    container_name: liquibase-container
+    image: liquibase/liquibase:latest
+    volumes:
+      - "./data/liquibase/changelog:/liquibase/changelog:rw"
+    command: liquibase update --url=jdbc:postgresql://pg_database:5432/leantech_prjct_airbnb_db --username=root --password=root --default-schema-name=sch_bronze_airbnb --changelog-file=./changelog/updatelog.xml
+    networks:
+      - data_default
+
+networks:
+  data_default:
+      external: true
+      name: pg-network
