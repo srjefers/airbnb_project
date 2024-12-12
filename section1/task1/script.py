@@ -22,8 +22,8 @@ def main(params: argparse.Namespace) -> None:
 
         df['reviews_per_month'] = df['reviews_per_month'].fillna(0)
         df['last_review'] = df['last_review'].fillna(df['last_review'].min())
-        df['name'] = df['name'].fillna('None')
-        df['host_name'] = df['host_name'].fillna('None')
+        df['name'] = df['name'].fillna('Not-defined')
+        df['host_name'] = df['host_name'].fillna('Not-defined')
 
         assert df.isna().sum().sum() == 0, print("Missing Values fund!")
 

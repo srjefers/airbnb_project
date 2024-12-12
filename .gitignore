@@ -4,6 +4,8 @@ profiles.yml.txt
 Diagram
 leantech_prjct_airbnb_db/
 .DS_Store
+*.zip
+*.png
 .user.yml
 ######################
 target/
