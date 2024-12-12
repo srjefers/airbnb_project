@@ -1,0 +1,122 @@
+version: 2
+
+models:
+  - name: silver_dim_host
+    descrition: Dimension model with data related about hosts and listing.
+    config:
+      tags: ['silver_models','data_test']
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn  
+      - name: host_name
+        tests:
+          - not_null:
+              config:
+                severity: warn  
+  - name: silver_dim_neighborhood
+    descrition: Dimension model with data related about the neighborhoods.
+    config:
+      tags: ['silver_models','data_test']
+    columns:
+      - name: neighborhood_id
+        tests:
+          - unique
+          - not_null:
+              config:
+                severity: warn    
+      - name: neighbourhood_group
+        tests:
+          - not_null:
+              config:
+                severity: warn    
+      - name: neighbourhood_name
+        tests:
+          - not_null:
+              config:
+                severity: warn      
+  - name: silver_dim_review
+    descrition: Dimension model with data about reviews on each host and house.
+    config:
+      tags: ['silver_models','data_test']
+    columns:
+      - name: review_id
+        tests:
+          - unique
+          - not_null:
+              config:
+                severity: warn    
+      - name: last_review
+        tests:
+          - not_null:
+              config:
+                severity: warn
+  - name: silver_dim_room_type
+    descrition: Dimension model with data about the roomtypes.
+    config:
+      tags: ['silver_models','data_test']
+    columns:
+      - name: room_type_id
+        tests:
+          - unique
+          - not_null:
+              config:
+                severity: warn
+      - name: room_type_name
+        tests:
+          - not_null:
+              config:
+                severity: warn
+          - unique          
+  - name: silver_fct_home
+    description: Fact model with data about the airbnb's at NYC
+    config:
+      tags: ['silver_models','data_test']
+    columns:
+      - name: home_latitude
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: home_longitude
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: home_price
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: home_id
+        tests:
+          - unique:
+              config:
+                severity: warn
+      - name: fk_neighborhood_id
+        test:
+          - relationships:
+              tags: ['fk_test']
+              to: ref('dim_neighborhood')
+              field: neighborhood_id
+      - name: fk_host_id
+        test:
+          - relationships:
+              tags: ['fk_test']
+              to: ref('dim_host')
+              field: host_id      
+      - name: fk_review_id
+        test:
+          - relationships:
+              tags: ['fk_test']
+              to: ref('dim_review')
+              field: review_id
+      - name: fk_room_type_id
+        test:
+          - relationships:
+              tags: ['fk_test']
+              to: ref('dim_room_type')
+              field: room_type_id

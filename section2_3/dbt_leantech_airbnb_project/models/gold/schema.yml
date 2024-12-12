@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: gold_monthly_booking_counts_per_neighborhood
+    config:
+      tags: ['gold_models','data_test']
+    columns:
+      - name: total_booking
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: neighbourhood_group
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: neighbourhood_name
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: booking_month
+        tests:
+          - not_null:
+              config:
+                severity: warn
