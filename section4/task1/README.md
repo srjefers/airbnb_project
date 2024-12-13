@@ -1,0 +1,10 @@
+# Task 1: Snowflake Query Optimization
+> A query on a large Snowflake table is performing poorly. It filters data based on the neighborhood column. How would you improve its performance?
+
+## Solution
+I think that some of the steps that I would follow to debug and find the performence/memory issue at the ECS would be:
+1. Check for the logs: I would take a look at cloudWatch or maybe at the logs generated inside the EC2 instance. I will try also to see if the ETL is generating some kind of logs that would be useful to check. To see how much time is it taking to run with large datasets, how many resources is it taking and if there is a way to run it in chunck or if the size of the chunks can be reduced even more.
+2. Check if the size of data that we are processing is what we expected at the firts time when the process was build, it mean that maybe the dataset has grown unexpectedly and now we have to find out how to process a much larger dataset.
+3. Another check would be to review the code, if there are some memory leaks or infinite loops running at the process or some api call that are using unnecesary data, I mean, maybe some json variables are taking more data such like metadata that we don't need and it is just taking unnecessary in-memory operations.
+4. As I mentioned before, taking a look about the size of the most larger dataset would be one of the most important ones, since we can split the dataset and run it by chuncks, or if it being read first from an API, we can get the data and deposit it into aws S3 such like a datalake and we can use AWS Athena to read and clean it.
+5. Maybe we don't need to have full process running just in a sinble EC2, we can split the steps such like one instance to read data and put that into AWS S3, another one that is going to clean the data or that is going to execute some queries at aws athena, and one last that is going to load the data into the tables/warehouse. With that we would be able to optimize the steps that are being executed and instead of increasing the size of memory we would be able to distribuite our resources and process on different instances.
