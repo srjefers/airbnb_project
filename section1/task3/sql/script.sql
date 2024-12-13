@@ -19,10 +19,13 @@ fact_home_cte as (
 ),
 final as (
     select
+        dim_neighborhood_cte.neighbourhood_name,
+        avg(fact_home_cte.home_price) as average_price
     from fact_home_cte
     inner join dim_neighborhood_cte 
         on dim_neighborhood_cte.neighborhood_id = fact_home_cte.fk_neighborhood_id
-    where 
+    group by dim_neighborhood_cte.neighbourhood_name
+    order by average_price desc
 )
 select * from final
 limit 5;
