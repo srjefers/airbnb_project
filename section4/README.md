@@ -17,7 +17,14 @@ Develop a Python AWS Lambda function that:
 2. Saves these reviews as JSON files in an S3 bucket.
 
 ## Solution
-
+### Task 1: Snowflake Query Optimization
+Can be found as a README.md file.
+### Task 2: Airflow DAG Creation
+Dag was created to solve this task.
+### Task 3: AWS EC2 Troubleshooting
+Can be found as a README.md file.
+### Task 4: AWS Lambda Implementation
+Script was created to solve this task.
 
 ## Project layout
 
