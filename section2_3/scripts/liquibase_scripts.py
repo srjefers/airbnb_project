@@ -12,15 +12,12 @@ def main(params: dict) -> None:
     if command == 'tag':
         docker_meta['liquibase'] = 'liquibase_tag'
         docker_meta['docker_file'] = 'docker-compose.liquibase.tag.yml'
-        #
     elif command == 'update':
         docker_meta['liquibase'] = 'liquibase_update'
         docker_meta['docker_file'] = 'docker-compose.liquibase.update.yml'
-        #liquibase_command = os.environ.get('liquibase_update', 'docker-compose -f docker-compose.liquibase.update.yml up')
     elif command == 'rollback':
         docker_meta['liquibase'] = 'liquibase_rollback'
         docker_meta['docker_file'] = 'docker-compose.liquibase.rollback.yml'
-        #liquibase_command = os.environ.get('liquibase_rollback', 'docker-compose -f docker-compose.liquibase.rollback.yml up')
 
     liquibase_command = os.environ.get(f'{docker_meta["liquibase"]}_up', f'docker-compose -f { docker_meta["docker_file"] } up')
     liquibase_down = os.environ.get(f'{docker_meta["liquibase"]}_down', f'docker-compose -f { docker_meta["docker_file"] } down')

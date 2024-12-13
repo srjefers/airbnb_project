@@ -1,4 +1,4 @@
-# Section 1: Data Cleaning, PostgreSQL, and Database Modeling (1.5 Hours)
+# Section 1: Data Cleaning, PostgreSQL, and Database Modeling
 ## Summary
 ### Task 1: Data Cleaning
 Utilize the New York City Airbnb Open Data dataset. Identify and address common
@@ -62,5 +62,5 @@ SQL scripts can be found at the sql/ directory. Those sql scripts has been done 
        └─ sql/              Sql scripts.        
 
 ## References 
-> https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data/discussion/115213
-> https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data/discussion/120300
+* https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data/discussion/115213
+* https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data/discussion/120300

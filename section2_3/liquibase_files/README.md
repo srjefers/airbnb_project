@@ -1,5 +1,5 @@
 # Liquibase commands to run localy
-
+Those commands has been exeucted manually to be able to test how the luqibase process works and how it can be implemented with postgres.
 ```bash
 liquibase init project --project-dir=/Users/jefersonargueta/Documents/projects/LeanTech/section2 --changelog-file=changelog.xml --format=xml --project-defaults-file=liquibase.properties --url=jdbc:postgresql://localhost:5432/leantech_prjct_airbnb_db --username=postgres --password=root
 
